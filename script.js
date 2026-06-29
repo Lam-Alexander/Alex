@@ -107,7 +107,9 @@
            // Match track height to active card so no dead space above/below
            const activeCard = cards[current];
            if (activeCard) {
-               track.style.minHeight = activeCard.offsetHeight + 'px';
+               requestAnimationFrame(() => {
+                   track.style.minHeight = activeCard.offsetHeight + 'px';
+               });
            }
    
            dots.forEach((d, i) => d.classList.toggle('active', i === current));
@@ -170,6 +172,8 @@
    
        update();
    }
-   
-   initCarousel('experience-track', 'experience-dots');
-   initCarousel('projects-track',   'projects-dots');
+
+window.addEventListener('load', () => {
+    initCarousel('experience-track', 'experience-dots');
+    initCarousel('projects-track',   'projects-dots');
+});

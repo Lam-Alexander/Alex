@@ -778,12 +778,14 @@ footer {
         font-size: 30px;
         margin: 0 150px;
         padding: 20px 0 0;
+        text-align: left;
     }
 
     .projects {
         font-size: 30px;
         margin: 0 150px;
         padding: 20px 0 0;
+        text-align: left;
     }
 
     /* Desktop carousel — 3-up fan layout */
