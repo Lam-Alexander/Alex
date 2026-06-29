@@ -5,10 +5,12 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     font-family: "Varela Round", sans-serif;
+    overflow-x: hidden;
 }
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 button {
@@ -56,7 +58,6 @@ nav {
 }
 
 .gray-github, .gray-linkedin {
-
     width: 36px;
     padding: 5px;
     transition: all 0.3s ease-in-out;
@@ -77,12 +78,12 @@ nav {
 
 
 
-/* ---------------- Main Conctent -------------- */
+/* ---------------- Header ---------------- */
 header {
     display: flex;
     color: #8892b0;
     text-align: center;
-    padding: 50px;
+    padding: 30px 20px;
     justify-content: center;
 }
 
@@ -107,7 +108,6 @@ header div {
     border-radius: 50px;
 }
 
-
 @keyframes blink {
     0%, 100% {
         background-color: transparent;
@@ -120,7 +120,8 @@ header div {
 
 h1 {
     color: #ccd6f6;
-
+    margin-top: 0;
+    margin-bottom: 4px;
 }
 
 .header-name {
@@ -135,16 +136,17 @@ h2 {
 
 h3 {
     color: #a8b2d1;
-    font-style:italic;
+    font-style: italic;
 }
 
 header div p {
     line-height: 28px;
     margin-top: 0px;
+    text-align: left;
+    padding: 0px 20px;
 }
 
 main {
-    
     color: #8892b0;
     font-weight: 400;
     font-style: normal;
@@ -152,16 +154,60 @@ main {
 }
 
 .tech-stack {
-color: #a8b2d1;
+    color: #a8b2d1;
 }
 
 .not-supported {
     color: #a8b2d1;
+    font-size: 12px;
+    margin-top: 8px;
 }
 
-.about-me, .experience, .projects {
+/* About section */
+.about-content {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.about-highlight {
+    color: #64ffda;
+    font-weight: 600;
+}
+
+.about-tech-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    text-align: left;
+}
+
+.about-tech-list li {
+    color: #8892b0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.about-tech-list li::before {
+    content: '▶';
+    color: #64ffda;
+    font-size: 10px;
+    flex-shrink: 0;
+}
+
+.experience, .projects {
     text-align: center;
-    padding: 40px;
+    padding: 16px 20px;
+}
+
+.about-me {
+    text-align: left;
+    padding: 16px 40px;
 }
 
 .maybeanadventure {
@@ -171,10 +217,7 @@ color: #a8b2d1;
 
 hr {
     display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 10px auto;
     border-style: inset;
     border-width: 0.5px;
     width: 75%;
@@ -203,11 +246,13 @@ li::marker {
     right: 15px;
     z-index: 99;
     cursor: pointer;
-    padding: 10px;
+    padding: 0;
     width: 50px;
     height: 40px;
     font-size: 18px;
     background-color: #0a192f;
+    align-items: center;
+    justify-content: center;
 }
 
 #myBtn:hover {
@@ -216,25 +261,278 @@ li::marker {
 
 button:active,
 button:focus {
-    background-color: #0a192f; /* Reset to original background */
+    background-color: #0a192f;
     outline: none;
 }
 
 @media (hover: none) {
     button:hover {
-        background-color: #0a192f; /* No hover effect on touch devices */
+        background-color: #0a192f;
     }
 
     #myBtn:hover {
-        background-color: #0a192f; /* Also disable hover on scroll button */
+        background-color: #0a192f;
     }
+}
+
+
+
+/* ============================================================
+   CAROUSEL — Mobile default: vertical stack
+   ============================================================ */
+
+.carousel-container {
+    display: block;
+    width: calc(100% - 32px);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Hide arrows and dots on mobile */
+.carousel-btn,
+.carousel-dots {
+    display: none;
+}
+
+.carousel-track-wrapper {
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Individual card */
+.carousel-card {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #112240;
+    border: 1px solid #1e3a5f;
+    border-radius: 12px;
+    padding: 24px 20px 18px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.3s ease;
+    overflow: hidden;
+}
+
+.carousel-card img {
+    max-width: 100%;
+}
+
+.carousel-card:hover {
+    border-color: #64ffda;
+}
+
+/* Card header row */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.card-tag {
+    font-size: 11px;
+    font-family: "Varela Round", sans-serif;
+    color: #64ffda;
+    border: 1px solid #64ffda;
+    border-radius: 4px;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card-date {
+    font-size: 12px;
+    color: #8892b0;
+}
+
+/* Card title */
+.card-title {
+    color: #ccd6f6;
+    font-size: 20px;
+    font-style: normal;
+    margin: 0;
+}
+
+/* Card body text */
+.card-body {
+    color: #8892b0;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Project screenshot */
+.card-image {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    max-height: 180px;
+}
+
+/* Three-up portrait screenshots */
+.screenshot-row {
+    display: flex;
+    gap: 8px;
+}
+
+.card-image-small {
+    width: calc(33.333% - 6px);
+    aspect-ratio: 1206 / 2622;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* Tech pills */
+.card-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.stack-pill {
+    font-size: 12px;
+    color: #64ffda;
+    background-color: rgba(100, 255, 218, 0.08);
+    border-radius: 4px;
+    padding: 3px 10px;
+}
+
+/* CTA links inside card */
+.card-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.card-link {
+    font-size: 13px;
+    font-family: "Varela Round", sans-serif;
+    border-radius: 5px;
+    padding: 7px 16px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.card-link--primary {
+    background-color: transparent;
+    color: #64ffda;
+    border: 1px solid #64ffda;
+}
+
+.card-link--primary:hover {
+    background-color: #122d54;
+}
+
+.card-link--secondary {
+    color: #8892b0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+}
+
+.card-link--secondary:hover {
+    color: #64ffda;
+}
+
+.card-github-icon {
+    width: 20px;
+}
+
+/* Placeholder card */
+.card-placeholder {
+    align-items: center;
+    text-align: center;
+}
+
+.card-placeholder-icon {
+    font-size: 48px;
+    color: #1e3a5f;
+    line-height: 1;
+    padding: 20px 0;
+}
+
+/* Prev / Next arrow buttons */
+.carousel-btn {
+    display: none;
+    /* hidden on mobile, shown on tablet+ */
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #64ffda;
+    background-color: #0a192f;
+    color: #64ffda;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    z-index: 1;
+}
+
+.carousel-btn:hover {
+    background-color: #122d54;
+}
+
+.carousel-btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+    background-color: #0a192f;
+}
+
+/* Dot indicators */
+.carousel-dots {
+    display: none;
+    /* hidden on mobile, shown on tablet+ */
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #1e3a5f;
+    border: 1px solid #64ffda;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+    padding: 0;
+}
+
+.carousel-dot.active {
+    background-color: #64ffda;
+    transform: scale(1.2);
+}
+
+/* Remove focus outline from carousel wrapper */
+.carousel-track-wrapper:focus {
+    outline: none;
+}
+
+.carousel-btn:focus,
+.carousel-dot:focus {
+    outline: none;
 }
 
 
 
 /* -------------------- Footer ------------------ */
 footer {
-
     color: #8892b0;
     text-align: center;
     padding-bottom: 10%;
@@ -243,33 +541,141 @@ footer {
 
 
 
-/* -------------------- Media Query ----------------------- */
+/* ==================== Media Queries ==================== */
 
-
-
-/* For Galaxy Z Flip */
+/* Galaxy Z Flip */
 @media screen and (max-width: 356px) {
-    .nav-social-bar {
-        display: flex;
+    nav {
+        padding: 5px 8px;
+        justify-content: space-between;
     }
-}
-
-
-/* This is for the logo double check this */
-@media only screen and (max-width: 600px) {
 
     .alex {
-        width: 100px;
-        margin-right: 150px;
+        width: 70px;
+    }
+
+
+    .gray-github, .gray-linkedin {
+        width: 28px;
+        padding: 3px;
+    }
+
+    header {
+        padding: 20px 12px;
+    }
+
+    .header-name {
+        font-size: 28px;
+    }
+
+    .experience, .projects {
+        padding: 12px 12px;
+    }
+
+    .about-me {
+        padding: 12px 25px;
+        text-align: center;
+    }
+
+    .carousel-container {
+        width: calc(100% - 16px);
+    }
+
+    .card-title {
+        font-size: 16px;
+    }
+
+    .card-body {
+        font-size: 13px;
+    }
+
+    .stack-pill {
+        font-size: 11px;
     }
 }
 
+/* Mobile logo */
+@media only screen and (max-width: 600px) {
+    .alex {
+        width: 100px;
+    }
+}
 
+/* Z Flip — shrink images to fit 3 side by side */
+@media only screen and (max-width: 356px) {
+    .screenshot-row {
+        gap: 4px;
+    }
+
+    .card-image-small {
+        width: calc(33.333% - 3px);
+        height: auto;
+        aspect-ratio: 1206 / 2622;
+        object-fit: cover;
+        object-position: top;
+    }
+}
+
+/* Tablet – horizontal carousel */
+@media only screen and (min-width: 600px) and (max-width: 1199px) {
+    .carousel-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: calc(100% - 40px);
+        max-width: 85vw;
+        position: relative;
+    }
+
+    .carousel-track-wrapper {
+        overflow: hidden;
+        border-radius: 12px;
+    }
+
+    .carousel-track {
+        flex-direction: row;
+        gap: 0;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .carousel-card {
+        min-width: 100%;
+        padding: 32px 28px 24px;
+    }
+
+    .carousel-btn {
+        display: flex;
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .carousel-dots {
+        display: flex;
+    }
+
+    .card-body {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .card-title {
+        font-size: 24px;
+    }
+
+    .card-image {
+        max-height: 260px;
+    }
+
+    .stack-pill {
+        font-size: 13px;
+    }
+}
+
+/* Desktop */
 @media only screen and (min-width: 1200px) {
 
-
-
-    /* -------------- Navigation Bar -------------- */
+    /* Nav */
     .nav-menu-bar {
         display: flex;
     }
@@ -277,14 +683,8 @@ footer {
     .nav-menu-bar a {
         color: #d8d9d8;
         margin: 50px;
-        padding: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 5px 10px;
         border-radius: 10px;
-        text-decoration: none;
-    }
-
-    a {
         text-decoration: none;
     }
 
@@ -293,24 +693,42 @@ footer {
         color: black;
     }
 
-
-
-    /* ---------------- Main Conctent -------------- */
+    /* Header */
     header div {
-        display: block;
-        justify-content: center;
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        margin: 300px;
-        margin-top: 150px;
+        text-align: center;
+        margin: 0 200px;
+        padding: 80px 0 60px;
+    }
+
+    header div p {
+        line-height: 32px;
+        font-size: 16px;
+        max-width: 65%;
+        margin: auto;
+    }
+
+    header h1 {
+        color: #ccd6f6;
+        font-weight: 400;
+        font-size: 75px;
+    }
+
+    header h2 {
+        color: #a8b2d1;
+        font-weight: 400;
+        font-size: 30px;
+    }
+
+    .cursor {
+        width: 0.35rem;
+        height: 5rem;
     }
 
     .contact-me-button {
         margin-top: 50px;
-        text-decoration: none;
-    }
-
-    button {
-        text-decoration: none;
     }
 
     .header-memo {
@@ -321,113 +739,168 @@ footer {
         font-size: 68px;
     }
 
-    header div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    header div p {
-        line-height: 40px;
-        font-size: 20px;
-        max-width: 65%;
-        margin: auto;
-    }
-
-    header h1 {
-        color: #ccd6f6;
-        font-weight: 400;
-        font-style: normal;
-        font-size: 75px;
-    }
-
-
-    header h2 {
-        color: #a8b2d1;
-        font-weight: 400;
-        font-style: normal;
-        font-size: 30px;
-    }
-
-    .cursor {
-        display: inline-block;
-        background-color: #64ffda;
-        width: 0.35rem;
-        height: 5rem;
-        animation: blink 1s infinite;
-        vertical-align: middle;
-        border-radius: 50px;
-    }
-
-    @keyframes blink {
-        0%, 100% {
-            background-color: transparent;
-        }
-
-        50% {
-            background-color: #64ffda;
-        }
-    }
-
+    /* Sections */
     .about-me {
-        color: #a8b2d1;
-        font-weight: 400;
-        font-style: normal;
         font-size: 30px;
-        margin: 150px;
+        margin: 0 150px;
+        padding: 30px 0;
     }
 
     .about-me p {
-        font-size: 20px;
-        line-height: 40px;
+        font-size: 14px;
+        line-height: 28px;
         display: inline-block;
         max-width: 50%;
-        justify-content: center;
-        align-items: center;
+    }
+
+    .about-content {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    .about-content p {
+        font-size: 16px;
+        line-height: 28px;
+        max-width: 100%;
+        display: block;
+    }
+
+    .about-tech-list {
+        margin-top: 16px;
+        gap: 12px 40px;
+    }
+
+    .about-tech-list li {
+        font-size: 16px;
     }
 
     .experience {
-        color: #a8b2d1;
-        font-weight: 400;
-        font-style: normal;
         font-size: 30px;
-        margin: 150px;
-    }
-
-    .experience-wrapper {
-        font-size: 20px;
-        line-height: 40px;
-        display: inline-block;
-        max-width: 50%;
-        justify-content: center;
-        align-items: center;
+        margin: 0 150px;
+        padding: 20px 0 0;
     }
 
     .projects {
-        color: #a8b2d1;
-        font-weight: 400;
-        font-style: normal;
         font-size: 30px;
-        margin: 150px;
+        margin: 0 150px;
+        padding: 20px 0 0;
     }
 
-    .projects-wrapper {
-        font-size: 20px;
-        line-height: 40px;
-        display: inline-block;
-        justify-content: center;
+    /* Desktop carousel — 3-up fan layout */
+    .carousel-container {
+        display: flex;
         align-items: center;
+        max-width: 1100px;
+        gap: 0;
+        padding: 0 20px;
+        overflow: visible;
+        position: relative;
     }
 
-    .maybeanadventure {
-        width: 50%;
+    .carousel-track-wrapper {
+        overflow: visible;
+        perspective: 1400px;
+        perspective-origin: center center;
+        flex: 1;
+    }
+
+    .carousel-track {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        transform: none;
+        transition: none;
+        position: relative;
+        min-height: 420px;
+    }
+
+    .carousel-card {
+        min-width: 0;
+        width: 420px;
+        flex-shrink: 0;
+        position: absolute;
+        padding: 36px 32px 28px;
+        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+            opacity 0.5s ease;
+    }
+
+    /* Active (centre) card */
+    .carousel-card.is-active {
+        transform: translateX(0) rotateY(0deg) scale(1);
+        opacity: 1;
+        z-index: 3;
+        box-shadow: 0 8px 40px rgba(100, 255, 218, 0.12);
+        border-color: #64ffda;
+    }
+
+    /* One step left */
+    .carousel-card.is-prev {
+        transform: translateX(-380px) rotateY(18deg) scale(0.88);
+        opacity: 0.55;
+        z-index: 2;
+        border-color: #1e3a5f;
+        box-shadow: none;
+    }
+
+    /* One step right */
+    .carousel-card.is-next {
+        transform: translateX(380px) rotateY(-18deg) scale(0.88);
+        opacity: 0.55;
+        z-index: 2;
+        border-color: #1e3a5f;
+        box-shadow: none;
+    }
+
+    /* Two+ steps away — hide */
+    .carousel-card.is-far {
+        transform: translateX(0) rotateY(0deg) scale(0.75);
+        opacity: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .carousel-card.is-prev,
+    .carousel-card.is-next {
+        cursor: pointer;
+    }
+
+    /* Show arrows on desktop */
+    .carousel-btn {
+        display: flex;
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+        position: relative;
+        z-index: 10;
+        flex-shrink: 0;
+    }
+
+    /* Show dots on desktop */
+    .carousel-dots {
+        display: flex;
+    }
+
+    .card-title {
+        font-size: 26px;
+    }
+
+    .card-body {
+        font-size: 17px;
+        line-height: 1.8;
+    }
+
+    .card-image {
+        max-height: 280px;
+    }
+
+    .stack-pill {
+        font-size: 14px;
     }
 
     button {
-        padding: 25px;
-        padding-left: 30px;
-        padding-right: 30px;
+        padding: 25px 30px;
     }
 
     a button {
@@ -435,14 +908,13 @@ footer {
         font-weight: bold;
     }
 
-    /* arrow up button */
+    /* Scroll-to-top */
     #myBtn {
         display: none;
         position: fixed;
         bottom: 20px;
         right: 15px;
         z-index: 99;
-        cursor: pointer;
         padding: 10px;
         width: 50px;
         height: 40px;
@@ -453,22 +925,7 @@ footer {
         background-color: #122d54;
     }
 
-
-
-    /* -------------------- Footer ------------------ */
     footer {
         padding-bottom: 2.5%;
     }
 }
-
-
-
-
-
-/* 
-@media screen and (max-width: 1000px) {
-
-    .nav-menu-bar {
-        display: flex;
-    }
-} */
